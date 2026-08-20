@@ -1,13 +1,87 @@
 {
-    "atomType": "Molecule",
-    "x": 0,
-    "y": 0,
-    "uniqueID": "id-95",
-    "name": "vec.Scale",
-    "topLevel": true,
-    "allAtoms": [],
-    "allConnectors": [],
-    "unitsKey": "Unitless",
-    "fileTypeVersion": 1,
-    "filetypeVersion": 1
+  "atomType": "Molecule",
+  "x": 0,
+  "y": 0,
+  "uniqueID": "id-95",
+  "name": "vec.Scale",
+  "ioValues": [
+    {
+      "name": "vector",
+      "ioValue": 10
+    },
+    {
+      "name": "scale",
+      "ioValue": 10
+    }
+  ],
+  "topLevel": true,
+  "allAtoms": [
+    {
+      "atomType": "Output",
+      "x": 0.98,
+      "y": 0.5,
+      "uniqueID": "id-96",
+      "ioValues": [
+        {
+          "name": "number or geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        }
+      ]
+    },
+    {
+      "atomType": "Input",
+      "x": 0.0231,
+      "y": 0.2714285714285714,
+      "uniqueID": "id-98",
+      "name": "vector",
+      "type": "point3d",
+      "pointValue": null
+    },
+    {
+      "atomType": "Input",
+      "x": 0.0231,
+      "y": 0.4342857142857143,
+      "uniqueID": "id-101",
+      "name": "scale"
+    },
+    {
+      "atomType": "Code",
+      "x": 0.43619791666666663,
+      "y": 0.46,
+      "uniqueID": "id-104",
+      "ioValues": [
+        {
+          "name": "vector",
+          "ioValue": 10
+        },
+        {
+          "name": "scale",
+          "ioValue": 10
+        }
+      ],
+      "interpreterVersion": 1,
+      "code": "function run(vector: number[], scale: number) {\n  if (vector.length != 3) {\n    throw new Error(\"Vector must be length 3. Was: \" + vector.length)\n  }\n  return new replicad.Vector(vector as [number, number, number]).multiply(scale).toTuple()\n}",
+      "compiledCode": "\"use strict\";\nfunction run(vector, scale) {\n    if (vector.length != 3) {\n        throw new Error(\"Vector must be length 3. Was: \" + vector.length);\n    }\n    return new replicad.Vector(vector).multiply(scale).toTuple();\n}\n"
+    }
+  ],
+  "allConnectors": [
+    {
+      "ap2Name": "vector",
+      "ap1ID": "id-98",
+      "ap2ID": "id-104"
+    },
+    {
+      "ap2Name": "scale",
+      "ap1ID": "id-101",
+      "ap2ID": "id-104"
+    },
+    {
+      "ap2Name": "number or geometry",
+      "ap1ID": "id-104",
+      "ap2ID": "id-96"
+    }
+  ],
+  "unitsKey": "Unitless",
+  "fileTypeVersion": 1,
+  "filetypeVersion": 1
 }
